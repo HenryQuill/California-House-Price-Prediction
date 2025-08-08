@@ -1,9 +1,19 @@
 # Early stopping application
 import numpy as np
+import pandas as pd
+import matplotlib.pyplot as plt
 from sklearn.datasets import fetch_california_housing
 from sklearn.model_selection import train_test_split
 from sklearn.preprocessing import StandardScaler
-import matplotlib.pyplot as plt
+
+
+# Load data
+data = fetch_california_housing()
+
+# Create DataFrame
+df = pd.DataFrame(data.data, columns=data.feature_names)
+df["MedHouseValue"] = data.target
+# print(df.head())  
 
 # ReLU activation function
 def relu(x):
@@ -102,8 +112,6 @@ class FNN:
 
 # Load and preprocess California Housing dataset
 def load_data():
-    # Load data from sklearn
-    data = fetch_california_housing()
     X = data.data.T  # Shape (n_features, n_samples)
     y = data.target.reshape(1, -1)  # Shape (1, n_samples)
 
@@ -127,10 +135,10 @@ def main():
     input_size = X_train.shape[0]  # Number of features (8)
     hidden_size = 10  # Number of neurons in hidden layer
     output_size = 1  # Number of output neurons (regression)
-    learning_rate = 0.001
-    epochs = 1000
+    learning_rate = 0.01
+    epochs = 5000
     patience = 50  # Number of patience epochs for Early Stopping
-    min_delta = 0.0  # Minimum improvement in validation loss
+    min_delta = 0.001  # Minimum improvement in validation loss
 
     # Create neural network object
     model = FNN(input_size, hidden_size, output_size, learning_rate)

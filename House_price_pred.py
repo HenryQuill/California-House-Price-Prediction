@@ -11,7 +11,8 @@ data = fetch_california_housing()
 
 # Create DataFrame
 df = pd.DataFrame(data.data, columns=data.feature_names)
-df
+df["MedHouseValue"] = data.target
+# print(df.head())  
 
 # ReLU activation function
 def relu(x):
@@ -83,8 +84,6 @@ class FNN:
 
 # Load and preprocess California Housing dataset
 def load_data():
-    # Load California Housing dataset from sklearn
-    data = fetch_california_housing()
     X = data.data.T  # Transpose feature matrix to (n_features, n_samples)
     y = data.target.reshape(1, -1)  # Reshape labels to (1, n_samples)
 
@@ -107,8 +106,8 @@ def main():
     input_size = X_train.shape[0]  # Number of features (8)
     hidden_size = 10  # Number of neurons in hidden layer
     output_size = 1  # Number of output neurons (1 for regression)
-    learning_rate = 0.001  # Learning rate
-    epochs = 1000  # Number of epochs
+    learning_rate = 0.01  # Learning rate
+    epochs = 5000  # Number of epochs
 
     # Create neural network model
     model = FNN(input_size, hidden_size, output_size, learning_rate)
