@@ -3,3 +3,4 @@ House_price_pred.py is a demo of using FNN, Back Propagation to predict Californ
 House_price_pred_ES.py is quite similar besides the Early Stopping implementation to better improve the model.
 The 2 graphs show the convergence process of Loss functions (MSE) of the 2 method.
 Libraries that need to be installed from your IDE terminal: numpy, pandas, scikit-learn, matplotlib
+It would be great if you guys can leave me some feedbacks lol
